@@ -1140,7 +1140,7 @@ const C = [
 ].map(r => ({code:r[0],ko:r[1],en:r[2],lat:r[3],lon:r[4],st:r[5],t:r[6],e:r[7]}));
 
 // 전체행사일정표(1안) 기준. [시간(ko), 시간(en), [행사 ko,en], [장소 ko,en], 구분]
-const HALL1=['컨벤션홀 I','Convention Hall I'], HALL23=['컨벤션홀 II·III','Convention Hall II & III'],
+const HALL1=['컨벤션홀 I','Convention Hall I'], HALL23=['3층 컨벤션홀','3F Convention Hall'],
       HALL2=['컨벤션홀 II','Convention Hall II'], HALL3=['컨벤션홀 III','Convention Hall III'],
       ROOM6=['6층 소회의실 (603~606)','6F meeting rooms 603\u2013606'], NLC=['해군군수사령부','ROK Navy Logistics Command'],
       GN=['경남 지역','Gyeongnam region'], NONE=['',''];
@@ -1154,7 +1154,7 @@ const SCHEDULE = [
     ['13:30 ~ 14:00','13:30 ~ 14:00',['개막식','Opening ceremony'],HALL23,'main'],
     ['14:00 ~ 16:00','14:00 ~ 16:00',['포럼 세션 1','Forum session 1'],HALL23,'main'],
     ['16:00 ~ 18:00','16:00 ~ 18:00',['포럼 세션 2','Forum session 2'],HALL23,'main'],
-    ['18:00 ~','18:00 ~',['환영만찬','Welcome dinner'],NONE,'meal'] ]},
+    ['18:30 ~','18:30 ~',['공식 환영만찬','Official welcome dinner'],NONE,'meal'] ]},
   { d:['11.24 (화)','Nov 24 (Tue)'], t:['2일차','Day 2'], par:true, items:[
     ['10:00 ~ 12:00','10:00 ~ 12:00',['외국 해군대표 양자회담','Bilateral talks with foreign navy delegations'],ROOM6,'main'],
     ['10:00 ~ 11:30','10:00 ~ 11:30',['기술설명회','Technology briefing'],HALL2,'main'],
@@ -1291,7 +1291,7 @@ function renderFooter(){
     <div class="ft-grid">
       <p class="ft-name"><b>International Naval Logistics &amp; MRO Cooperation Forum</b>
         <span>${k('2026 국제 해군 군수 및 MRO 협력 포럼','INMF 2026')}</span>
-        <small>${k('2026. 11. 22(일) ~ 25(수) · 창원컨벤션센터 및 해군군수사령부','Nov 22 (Sun) – 25 (Wed), 2026 · CECO and ROK Navy Logistics Command, Changwon')}</small></p>
+        <small>${k('2026. 11. 22(일) ~ 25(수) · 창원컨벤션센터(컨벤션홀) 및 해군군수사령부 등','Nov 22 (Sun) – 25 (Wed), 2026 · CECO (Convention Hall), ROK Navy Logistics Command and other venues, Changwon')}</small></p>
       <dl class="ft-col ft-org">
         <dt>HOST · ${k('주최','Hosts')}</dt><dd>${k('창원특례시','Changwon Special City')}</dd><dd>${k('해군군수사령부','ROK Navy Logistics Command')}</dd>
         <dt style="margin-top:22px">ORGANIZER · ${k('주관','Organizers')}</dt><dd>${k('해군군수사령부','ROK Navy Logistics Command')}</dd><dd>${k('창원산업진흥원','Changwon Industry Promotion Agency')}</dd></dl>
@@ -1355,7 +1355,7 @@ function spPrevNext(secId, subId){
 }
 // secretariat contact as a hairline list
 const spContact = () => spSpec([
-  [k('사무국','Secretariat'), `${k('해군군수산업전 사무국','Naval Logistics Expo Secretariat')}<br>${k(SEC.name[0],SEC.name[1])}`],
+  [k('사무국','Secretariat'), `${k('해양군수산업전 사무국','Naval Logistics Expo Secretariat')}<br>${k(SEC.name[0],SEC.name[1])}`],
   [k('주소','Address'), k(SEC.addr[0],SEC.addr[1])],
   ['Tel. / Fax.', `<a href="tel:0556021993">${SEC.tel}</a> / ${SEC.fax}`],
   ['E-mail', `<a href="mailto:${SEC.mail}">${SEC.mail}</a>`]
@@ -1370,7 +1370,7 @@ const PROG_DAYS = [
   { day:'23', dow:['월','MON'], label:['1일차','Day 1'], items:[
     { t:['10:00','10:00'], n:['국제 교류협력 회의','International Logistics Cooperation Conference'], d:['28개국 해군 군수대표가 운용·정비 경험과 협력 과제를 논의하는 라운드테이블','A round table where logistics chiefs of 28 navies discuss operations, maintenance and joint tasks'], l:['컨벤션홀 I','Convention Hall I'], h:'#/program/conference' },
     { t:['10:00 ~ 17:00','10:00 – 17:00'], tn:['11.23 ~ 24 양일','Nov 23–24'], n:['해양군수산업전','Naval Logistics Expo'], d:['체계기업과 부품·기자재 기업이 참가하는 총 39부스 규모의 전시','A 39-booth exhibition of system integrators and parts makers'], l:['컨벤션홀 로비 및 대회의실','Convention Hall lobby and meeting rooms'], h:'#/program/expo' },
-    { t:['13:30','13:30'], n:['개막식 및 국제 해군 군수협력 포럼','Opening and International Naval Logistics Forum'], d:['함정 건조, 전투체계, MRO, 해군지원, 기자재 공급망 등 5개 주제의 발표와 패널토론','Talks and panels on shipbuilding, combat systems, MRO, navy support and supply chains'], l:['컨벤션홀 II·III','Convention Hall II & III'], h:'#/program/forum' } ]},
+    { t:['13:30','13:30'], n:['개막식 및 국제 해군 군수협력 포럼','Opening and International Naval Logistics Forum'], d:['정책·제도 및 기술·산업 분야 발표와 패널토론','Presentations and panel discussions on policy and institutions, and on technology and industry'], l:['3층 컨벤션홀','3F Convention Hall'], h:'#/program/forum' } ]},
   { day:'24', dow:['화','TUE'], label:['2일차','Day 2'], items:[
     { t:['오전','AM'], n:['외국 해군대표 양자회담 및 기술설명회','Bilateral talks and technology briefing'], d:['운용국별 양자회담과 국내 기업의 기술설명회','Bilateral meetings with operator navies and briefings by Korean companies'], l:['6층 소회의실 · 컨벤션홀 II','6F rooms · Convention Hall II'], h:'#/program/bilateral' },
     { t:['오후','PM'], n:['군수사 예하 부대 및 함정 견학','Logistics Command and ship tour'], d:['정비창, 병탄창, 보급창과 LPH, DDG 등 함정을 직접 확인','Visit the repair, ordnance and supply depots and ships such as LPH and DDG'], l:['해군군수사령부','ROK Navy Logistics Command'], h:'#/program/schedule' } ]},
@@ -1489,7 +1489,7 @@ P.home = () => {
       <div class="hero-foot">
         <dl class="hero-meta">
           <div><dt>${k('일자','Dates')}</dt><dd>2026. 11. 22.<sup>${k('일','SUN')}</sup> ~ 25.<sup>${k('수','WED')}</sup></dd></div>
-          <div><dt>${k('장소','Venue')}</dt><dd>${k('창원시 및 해군군수사령부','Changwon and ROK Navy Logistics Command')}<span class="loc">CHANGWON · KOREA</span></dd></div>
+          <div><dt>${k('장소','Venue')}</dt><dd>${k('창원컨벤션센터 및 해군군수사령부 등','CECO, ROK Navy Logistics Command and other venues')}<span class="loc">CHANGWON · KOREA</span></dd></div>
         </dl>
         <a class="hero-go" href="#/visitor/register"><span>${k('참관 사전등록','Register to attend')}</span><i aria-hidden="true">→</i></a>
       </div>
@@ -1506,7 +1506,7 @@ P.home = () => {
       <p class="intro-trans" data-reveal style="--i:2">${k('A naval export does not end at delivery.','함정 수출의 경쟁력은 인도에서 끝나지 않습니다.')}</p>
       <div class="intro-purpose" data-reveal>
         <p class="intro-lead">${k('K-함정 운용국과 대한민국 해군·방산기업을 연결하는 국제 군수협력 플랫폼','An international platform linking operators of Korean-built ships with the ROK Navy and industry')}</p>
-        <p class="intro-text">${k('20개국에서 운용 중인 K-함정 80척의 안정적인 운용을 위해, 운용국 해군과 대한민국 해군, 국내 해양방산기업이 한자리에 모여 정비·수리·개량과 후속 군수지원 협력을 논의합니다.','With 80 Korean-built ships in service across 20 nations, operator navies, the ROK Navy and Korean industry meet to shape cooperation in maintenance, repair, upgrades and follow-on support.')}</p>
+        <p class="intro-text">${k('20개국 80척의 K-함정 운용 기반을 안정적으로 지원하기 위해, 운용국 해군과 대한민국 해군, 국내 해양방산기업이 한자리에 모여 정비·수리·개량과 후속 군수지원 협력을 논의합니다.','To support an operating base of 80 Korean-built ships across 20 nations, operator navies, the ROK Navy and Korean industry meet to shape cooperation in maintenance, repair, upgrades and follow-on support.')}</p>
         <div class="intro-links">
           <a href="#/about/overview">${k('행사개요','Event overview')}<span aria-hidden="true">→</span></a>
           <a href="#/exhibitor/apply">${k('전시 참가 신청','Exhibitor Application')}<span aria-hidden="true">→</span></a>
@@ -1573,11 +1573,11 @@ P.home = () => {
 P['about/overview'] = () => pageShell('about','overview', `
   ${spSec('01', k('개요','Overview'), `
     <h2 class="sp-h">${k('K-함정 운용국과 대한민국 해군·방산기업을 연결하는 국제 군수협력 플랫폼','An international platform linking operators of Korean-built ships with the ROK Navy and industry')}</h2>
-    <p class="sp-lead">${k('20개국에서 운용 중인 K-함정 80척의 안정적인 운용을 위해, 운용국 해군과 대한민국 해군, 국내 해양방산기업이 한자리에 모여 정비·수리·개량과 후속 군수지원 협력을 논의합니다.','With 80 Korean-built ships in service across 20 nations, operator navies, the ROK Navy and Korean industry meet to shape cooperation in maintenance, repair, upgrades and follow-on support.')}</p>
+    <p class="sp-lead">${k('20개국 80척의 K-함정 운용 기반을 안정적으로 지원하기 위해, 운용국 해군과 대한민국 해군, 국내 해양방산기업이 한자리에 모여 정비·수리·개량과 후속 군수지원 협력을 논의합니다.','To support an operating base of 80 Korean-built ships across 20 nations, operator navies, the ROK Navy and Korean industry meet to shape cooperation in maintenance, repair, upgrades and follow-on support.')}</p>
     <div class="sp-block">${spSpec([
       [k('행사명','Event'), k('2026 국제 해군 군수 및 MRO 협력 포럼','2026 International Naval Logistics & MRO Cooperation Forum')],
       [k('기간','Dates'), k('2026. 11. 22(일) ~ 25(수), 4일간','Nov 22 (Sun) – 25 (Wed), 2026, 4 days')],
-      [k('장소','Venue'), k('창원컨벤션센터(CECO) 및 해군군수사령부','Changwon Exhibition Convention Center (CECO) and ROK Navy Logistics Command')],
+      [k('장소','Venue'), k('창원컨벤션센터(컨벤션홀) 및 해군군수사령부 등','Changwon Exhibition Convention Center (Convention Hall), ROK Navy Logistics Command and other venues')],
       [k('주최','Hosts'), k('창원특례시, 해군군수사령부','Changwon Special City, ROK Navy Logistics Command')],
       [k('주관','Organizers'), k('해군군수사령부, 창원산업진흥원','ROK Navy Logistics Command, Changwon Industry Promotion Agency')],
       [k('후원','Supporters'), k('대한민국 해군, 방위사업청, 국방기술품질원, 중소조선연구원, 국방과학연구소, 국방기술진흥연구소, 한국산업단지공단 경남지역본부, 경남테크노파크','Republic of Korea Navy, Defense Acquisition Program Administration, Defense Agency for Technology and Quality, Research Institute of Medium & Small Shipbuilding, Agency for Defense Development, Korea Research Institute for Defense Technology Planning and Advancement, Korea Industrial Complex Corporation Gyeongnam, Gyeongnam Technopark')],
@@ -1604,7 +1604,7 @@ P['about/background'] = () => {
   return pageShell('about','background', `
   ${spSec('01', k('배경','Background'), `
     <h2 class="sp-h">${k('K-함정의 미래는 수출이 아니라 운용에 있습니다','The future of Korean-built ships lies in how they are operated')}</h2>
-    <p class="sp-lead">${k('현재 20개국에서 K-함정 80척이 운용 중이며, 8개국과 추가 함정 수출협상이 진행되고 있습니다. 수출시장이 넓어지는 만큼 MRO와 후속 군수지원 협력 수요도 커지고 있습니다.','Eighty Korean-built ships serve in 20 navies, and 8 more nations are negotiating new orders. As the market grows, so does demand for MRO and follow-on support.')}</p>`)}
+    <p class="sp-lead">${k('양도·수출함정 운용국 20개국, 80척의 K-함정 운용 기반이 구축되어 있으며, 8개국과 추가 함정 수출협상이 진행되고 있습니다. 수출시장이 넓어지는 만큼 MRO와 후속 군수지원 협력 수요도 커지고 있습니다.','Korean-built ships transferred or exported to 20 nations form an operating base of 80 vessels, and 8 more nations are negotiating new orders. As the market grows, so does demand for MRO and follow-on support.')}</p>`)}
   ${chartBlock()}
   ${spSec('02', k('운용 현황','By nation'), `
     <h2 class="sp-h">${k('국가별 양도·수출함정 현황','Transfers and exports by nation')}</h2>
@@ -1655,33 +1655,33 @@ const GRID_COLS = [
   {day:0, room:['',''] }, {day:1, room:HALL1}, {day:1, room:HALL23}, {day:1, room:['기타','Other']},
   {day:2, room:['6층 소회의실 (603~606)','6F rooms 603\u2013606']}, {day:2, room:HALL2}, {day:2, room:HALL3},
   {day:3, room:GN}, {day:4, room:['','']} ];
-// [col, startSlot(09:00=0, 30분 단위, 18=18:00~), rowspan, colspan, [ko,en], type, [sub ko,en]]
+// [col, startSlot(09:00=0, 30분 단위, 18=저녁 행: 각 칸에 시작 시각 표기), rowspan, colspan, [ko,en], type, [sub ko,en]]
 const GRID = [
   [0,3,15,1,['입국','Arrival'],'etc',['공항 의전','Airport protocol']],
-  [0,18,1,1,['환영 리셉션','Welcome reception'],'meal',['해군군수사령부','Navy Logistics Command']],
+  [0,18,1,1,['환영 리셉션','Welcome reception'],'meal',['18:00 ~ · 해군군수사령부','18:00 ~ · Navy Logistics Command']],
   [1,2,4,1,['국제 교류협력 회의','Cooperation Conference'],'main'],
   [1,6,2,1,['공식 오찬','Official luncheon'],'meal'],
   [2,9,1,1,['개막식','Opening ceremony'],'key'],
   [2,10,4,1,['포럼 세션 1','Forum session 1'],'main'],
   [2,14,4,1,['포럼 세션 2','Forum session 2'],'main'],
-  [3,18,1,1,['환영만찬','Welcome dinner'],'meal'],
+  [3,18,1,1,['공식 환영만찬','Official welcome dinner'],'meal',['18:30 ~','18:30 ~']],
   [4,2,4,1,['외국 해군대표 양자회담','Bilateral talks'],'main'],
   [5,2,3,1,['기술설명회','Technology briefing'],'main'],
   [6,6,2,1,['공식 오찬','Official luncheon'],'meal'],
   [4,8,1,3,['이동','Transfer'],'move'],
   [4,9,7,3,['군수사 예하 부대 및 함정 견학','Logistics Command units and ship tour'],'etc',['예하부대: 정비창, 병탄창, 보급창 / 함정: LPH, DDG 등','Repair, ordnance and supply depots; LPH, DDG and more']],
   [4,16,1,3,['이동','Transfer'],'move'],
-  [6,18,1,1,['환송만찬','Farewell dinner'],'meal'],
+  [6,18,1,1,['환송만찬','Farewell dinner'],'meal',['18:00 ~','18:00 ~']],
   [7,0,2,1,['이동','Transfer'],'move'],
   [7,2,4,1,['방산기업 방문 (오픈 하우스)','Company visits (Open House)'],'etc'],
   [7,6,2,1,['비즈니스 오찬','Business luncheon'],'meal'],
   [7,8,1,1,['이동','Transfer'],'move'],
   [7,9,7,1,['방산기업 방문 (오픈 하우스)','Company visits (Open House)'],'etc'],
   [7,16,1,1,['이동','Transfer'],'move'],
-  [7,18,1,1,['비즈니스 만찬','Business dinner'],'meal'],
+  [7,18,1,1,['비즈니스 만찬','Business dinner'],'meal',['18:00 ~','18:00 ~']],
   [8,2,16,1,['출국','Departure'],'etc',['공항 의전','Airport protocol']]
 ];
-function slotLabel(i){ if (i===18) return '18:00 ~'; const m=540+i*30, f=x=>String(Math.floor(x/60)).padStart(2,'0')+':'+String(x%60).padStart(2,'0'); return f(m)+' ~ '+f(m+30); }
+function slotLabel(i){ if (i===18) return k('저녁','Evening'); const m=540+i*30, f=x=>String(Math.floor(x/60)).padStart(2,'0')+':'+String(x%60).padStart(2,'0'); return f(m)+' ~ '+f(m+30); }
 function scheduleGrid(){
   const L = state.lang==='ko'?0:1, R=19, NC=GRID_COLS.length;
   const occ = Array.from({length:R},()=>Array(NC).fill(null));
@@ -1741,33 +1741,32 @@ const progMeta = (d, t, l) => [['DATE', k(d[0], d[1])], ['TIME', k(t[0], t[1])],
 
 P['program/forum'] = () => pageShell('program','forum', `
   ${spSec('01', k('개요','Overview'), `
-    <h2 class="sp-h">${k('군수지원 경험과 최신기술을 공유하는 전문 포럼','A specialist forum on support experience and new technology')}</h2>
+    <h2 class="sp-h">${k('글로벌 진출을 위한 함정 MRO 발전 과제','Key Strategies for Global Naval MRO Expansion')}</h2>
+    <p class="sp-lead">${k('군수지원 경험과 최신기술을 공유하는 전문 포럼입니다.','A specialist forum on support experience and new technology.')}</p>
     <p class="sp-lead">${k('운용국 간 실질적인 군수협력 방안을 논의합니다. 개막식에 이어 두 개 세션으로 진행됩니다.','Participants discuss practical cooperation between operator navies, in two sessions after the opening ceremony.')}</p>
     <div class="sp-block">${spSpec([
-      [k('주최','Hosts'), k('해군군수사령부, 창원특례시','ROK Navy Logistics Command, Changwon Special City')],
-      [k('주관','Organizer'), k('관내 대학교 (협의 중)','Local university (in discussion)')],
+      [k('공동주최','Co-hosts'), k('창원특례시, 해군군수사령부','Changwon Special City, ROK Navy Logistics Command')],
+      [k('공동주관','Co-organizers'), k('국립창원대학교, 창원산업진흥원','Changwon National University, Changwon Industry Promotion Agency')],
+      [k('세부 장소','Hall'), k('3층 컨벤션홀 II·III(1안) 또는 컨벤션홀 I(2안), 확정 후 공지','3F Convention Hall II & III (option 1) or Convention Hall I (option 2), to be confirmed')],
       [k('구성','Format'), k('주제발표 및 패널토론','Presentations and panel discussion')],
       [k('참석','Audience'), k('해외 해군, 해외 무관단, 방산기업, 전문가','Foreign navies, defense attachés, industry, experts')]
     ])}</div>`)}
-  ${spSec('02', k('주제','Topics'), spIndex([
-      [k('함정 건조·기술','Shipbuilding'), k('국내 조선소 수상함·잠수함 건조능력 및 최신기술 적용현황','Korean yards’ surface ship and submarine capacity and new technology')],
-      [k('전투체계 지원','Combat systems'), k('해외 수출함정 전투체계 신뢰도 향상을 위한 K-CCSQT 지원방안','K-CCSQT support to improve combat system reliability on exported ships')],
-      ['MRO', k('국내 MRO 능력 및 발전방향','Korea’s MRO capability and roadmap')],
-      [k('해군지원','Navy support'), k('K-해양방산 발전을 위한 해군지원 방안','How the ROK Navy supports the naval industry')],
-      [k('기자재 공급망','Supply chain'), k('한국 조선·해양기자재 공급망 구축현황 및 지원계획','Korea’s marine equipment supply chain and support plans')]
-    ], 3))}
+  ${spSec('02', k('주요 주제','Key topics'), spIndex([
+      [k('정책·제도','Policy and institutions'), k('국제 해군 군수협력 제도화 및 함정 전 생애주기 총괄 지원체계 구축','Institutionalizing international naval logistics cooperation and building total life-cycle support for ships')],
+      [k('기술·산업','Technology and industry'), k('함정 MRO 총괄지원을 위한 기술적 인프라 구축 방향','Building the technical infrastructure for total ship MRO support')]
+    ], 2))}
   ${spSec('03', k('주요 일정','Timetable'), `
     <ul class="sp-rows">${[
       [['11/23 10:00 ~ 12:00'], ['국제 교류협력 회의','Cooperation conference'], ['컨벤션홀 I','Convention Hall I'], '#/program/conference'],
-      [['11/23 13:30 ~ 14:00'], ['개막식','Opening ceremony'], ['컨벤션홀 II·III','Convention Hall II & III']],
-      [['11/23 14:00 ~ 16:00'], ['포럼 세션 1','Forum session 1'], ['컨벤션홀 II·III','Convention Hall II & III']],
-      [['11/23 16:00 ~ 18:00'], ['포럼 세션 2','Forum session 2'], ['컨벤션홀 II·III','Convention Hall II & III']],
-      [['11/23 18:00 ~'], ['환영만찬','Welcome dinner'], ['','']],
+      [['11/23 13:30 ~ 14:00'], ['개막식','Opening ceremony'], ['3층 컨벤션홀','3F Convention Hall']],
+      [['11/23 14:00 ~ 16:00'], ['포럼 세션 1 · 정책·제도 분야','Forum session 1 · Policy and institutions'], ['3층 컨벤션홀','3F Convention Hall'], null, ['국제 해군 군수협력 제도화 및 함정 전 생애주기 총괄 지원체계 구축','Institutionalizing international naval logistics cooperation and building total life-cycle support for ships']],
+      [['11/23 16:00 ~ 18:00'], ['포럼 세션 2 · 기술·산업 분야','Forum session 2 · Technology and industry'], ['3층 컨벤션홀','3F Convention Hall'], null, ['함정 MRO 총괄지원을 위한 기술적 인프라 구축 방향','Building the technical infrastructure for total ship MRO support']],
+      [['11/23 18:30 ~'], ['공식 환영만찬','Official welcome dinner'], ['','']],
       [['11/24 10:00 ~ 12:00'], ['외국 해군대표 양자회담','Bilateral talks'], ['6층 소회의실 (603~606)','6F rooms 603–606'], '#/program/bilateral'],
       [['11/24 10:00 ~ 11:30'], ['기술설명회','Technology briefing'], ['컨벤션홀 II','Convention Hall II'], '#/program/briefing']
-    ].map(([t, n, l, h]) => psRow({ t:[t[0], t[0]], n, l, h })).join('')}</ul>
+    ].map(([t, n, l, h, d]) => psRow({ t:[t[0], t[0]], n, l, h: h || undefined, d })).join('')}</ul>
     <p class="sp-note">${k('발표자와 세션별 세부 주제는 추후 공지됩니다.','Speakers and session details will be announced.')}</p>`)}
-  ${spPrevNext('program','forum')}`, { wake:true, meta: progMeta(['2026. 11. 23(월)','Mon, Nov 23, 2026'], ['14:00 ~ 18:00 (개막식 13:30)','14:00–18:00 (opening 13:30)'], ['컨벤션홀 II·III','Convention Hall II & III']) });
+  ${spPrevNext('program','forum')}`, { wake:true, meta: progMeta(['2026. 11. 23(월)','Mon, Nov 23, 2026'], ['14:00 ~ 18:00 (개막식 13:30)','14:00–18:00 (opening 13:30)'], ['창원컨벤션센터(CECO) 3층 컨벤션홀','CECO 3F Convention Hall']) });
 
 P['program/conference'] = () => pageShell('program','conference', `
   ${spSec('01', k('개요','Overview'), `
@@ -1859,7 +1858,7 @@ const IMG_BOOTH = 'data:image/webp;base64,UklGRuxbAABXRUJQVlA4WAoAAAAQAAAAjwEAfA
 const SEC = { name:['(주)이디아','EDIA Co., Ltd.'], addr:['경남 창원시 평산로 33, 신화더플렉스시티 427호','Room 427, Sinhwa The Plex City, 33 Pyeongsan-ro, Changwon, Gyeongnam'], tel:'055-602-1993', fax:'0505-361-9609', mail:'expo0430@naver.com' };
 const BOOTH_PRICE = 400000;
 const RULES = [
- [['용어의 정의','Definitions'],[['“전시자”라 함은 본 『국제 해군 군수 및 MRO 협력 포럼 - 해군군수산업전』 전시 참가를 위하여 소정의 참가 신청서를 제출한 개인, 회사, 조합 및 단체 등의 전시참가 신청자를 말한다. “전시회”라 함은 상기명의 오프라인 전시회를 말한다.','“Exhibitor” means any individual, company, association or organization that has submitted the application form to exhibit at the International Naval Logistics & MRO Cooperation Forum – Naval Logistics Expo. “Exhibition” means the offline exhibition named above.'],['“주최자”라 함은 상기명의 전시회 주최기관 및 주관사를 말한다.','“Organizer” means the host institutions and managing organizers of the Exhibition.']]],
+ [['용어의 정의','Definitions'],[['“전시자”라 함은 본 『국제 해군 군수 및 MRO 협력 포럼 - 해양군수산업전』 전시 참가를 위하여 소정의 참가 신청서를 제출한 개인, 회사, 조합 및 단체 등의 전시참가 신청자를 말한다. “전시회”라 함은 상기명의 오프라인 전시회를 말한다.','“Exhibitor” means any individual, company, association or organization that has submitted the application form to exhibit at the International Naval Logistics & MRO Cooperation Forum – Naval Logistics Expo. “Exhibition” means the offline exhibition named above.'],['“주최자”라 함은 상기명의 전시회 주최기관 및 주관사를 말한다.','“Organizer” means the host institutions and managing organizers of the Exhibition.']]],
  [['참가신청 및 계약','Application and contract'],[['전시회 참가신청을 하고자 하는 자는 소정의 참가신청서를 작성하여 주최자에게 제출하고, 확정통보 후 본 전시회 참가계약은 성립된 것으로 본다.','Applicants submit the application form to the Organizer. The participation contract is concluded once the Organizer confirms participation.']]],
  [['전시면적 배정','Space allocation'],[['주최자는 신청서와 전시내용에 따라 참가여부를 확정통보하고 전시위치를 배정한다.','The Organizer confirms participation and allocates stand locations based on the application and exhibits.'],['주최자는 전시회장의 공간조화와 관람효율 및 전시효과 등을 고려 전반적인 전시장 운영상 필요하다고 인정할 경우, 전시자에게 배정된 전시위치를 변경할 수 있다. 이와 같은 변경은 주최자의 재량이며, 전시자는 동 변경의 결과에 대한 이의를 제기할 수 없다.','Where necessary for layout, visitor flow or overall operation, the Organizer may change an allocated location at its discretion, and the Exhibitor may not object to the change.']]],
  [['전시회장 관리','Stand management'],[['전시자는 참가신청서에 명시한 전시품을 전시하고 상주요원을 배치하여 자사부스(Booth) 관리에 만전을 기하여야 한다.','Exhibitors display the exhibits stated in the application and keep staff at the stand at all times.'],['전시자가 참가신청서에 명시한 전시품과 상이한 물품을 전시하거나 전시성격에 부합되지 않은 물품을 전시할 경우 또는 주최자의 허가없이 부당행위를 하는 경우 및 타사의 전시에 피해를 주는 행위를 할 경우 주최자는 즉시 부스 중지, 철거 또는 반출을 명할 수 있다. 전시자는 이에 따른 배상을 청구할 수 없다.','If an Exhibitor displays items other than those stated or unsuited to the Exhibition, acts improperly without permission, or harms other exhibitors, the Organizer may immediately suspend, dismantle or remove the stand, without compensation.'],['주최자는 필요한 경우 특정인의 전시회장 출입을 제한할 수 있다.','The Organizer may restrict any person’s entry to the venue where necessary.'],['전시자는 주최자의 서면 동의없이 배정된 전시면적의 전부 또는 일부를 타인에게 양도할 수 없다.','Exhibitors may not transfer all or part of their space to others without the Organizer’s written consent.'],['전시자는 제공되는 기본부스 및 시설물의 원상변형을 할 수 없으며, 전시장치의 손상에 대해서 원상복구 등 주최자의 손해를 배상하여야 한다.','Exhibitors may not alter the shell scheme or facilities provided, and must restore or compensate for any damage.']]],
@@ -1938,7 +1937,7 @@ P['exhibitor/guide'] = () => pageShell('exhibitor','guide', `
       [k('부대시설 신청 및 전시 참가','Order services and exhibit')]
     ], 4)}</div>
     <div class="sp-block sp-cta"><a class="w-btn" href="#/exhibitor/apply">${k('전시 참가 신청하기','Apply to exhibit')}<span aria-hidden="true">→</span></a></div>
-    <div class="sp-block"><h3 class="sp-h3" style="margin-bottom:18px">${k('해군군수산업전 사무국','Naval Logistics Expo Secretariat')}</h3>${spContact()}</div>`)}
+    <div class="sp-block"><h3 class="sp-h3" style="margin-bottom:18px">${k('해양군수산업전 사무국','Naval Logistics Expo Secretariat')}</h3>${spContact()}</div>`)}
   ${spPrevNext('exhibitor','guide')}`, { wake:true, meta: progMeta(['2026. 11. 23(월) ~ 24(화)','Nov 23–24, 2026'], ['10:00 ~ 17:00','10:00–17:00'], ['창원컨벤션센터 컨벤션홀 로비 및 대회의실(301, 302)','CECO Convention Hall lobby and rooms 301 & 302']) });
 
 P['exhibitor/apply'] = () => {
@@ -1994,7 +1993,7 @@ P['exhibitor/apply'] = () => {
           <p><b>${k('참가비 납부','Payment')}</b> ${k('납부 계좌는 추후 안내 예정입니다. 부스신청비 50%는 납입처 통보 후 7일 이내, 잔금 50%는 2026년 10월 23일(금)까지 입금해 주십시오. 입금 후 입금 사본증 1부를 이메일 또는 팩스로 송부해 주십시오.','Bank details will follow. Pay 50% within 7 days of the payment notice and the balance by Fri, Oct 23, 2026, then send proof of payment by email or fax.')}</p>
           <p><b>${k('해약 규정','Cancellation')}</b> ${k('납입처 통보 후 7일 이내: 총 참가비의 50% / 개최 30일 전: 총 참가비의 잔금 50%','Within 7 days of payment notice: 50% of the total fee. 30 days before opening: the remaining 50%.')}</p>
         </div>
-        <details class="rules" style="margin-top:20px"><summary>${k('해군군수산업전 참가규정 (제1조 ~ 제13조) 보기','Read the exhibitor rules (Articles 1–13)')}</summary>
+        <details class="rules" style="margin-top:20px"><summary>${k('해양군수산업전 참가규정 (제1조 ~ 제13조) 보기','Read the exhibitor rules (Articles 1–13)')}</summary>
           <ol class="articles">${RULES.map((r,i)=>`<li><h4>${k('제 '+(i+1)+' 조','Article '+(i+1))} (${esc(r[0][L])})</h4>${r[1].length>1?'<ol>'+r[1].map(x=>`<li>${esc(x[L])}</li>`).join('')+'</ol>':`<p>${esc(r[1][0][L])}</p>`}</li>`).join('')}</ol>
           ${state.lang==='en'?'<p class="hint">The Korean text prevails in case of any discrepancy.</p>':''}
         </details>
@@ -2009,8 +2008,8 @@ P['exhibitor/apply'] = () => {
     </form>
     </div>
   </div>
-  ${spSec('05', k('문의','Contact'), `<h3 class="sp-h3" style="margin-bottom:18px">${k('해군군수산업전 사무국','Naval Logistics Expo Secretariat')}</h3>${spContact()}`)}
-  ${spPrevNext('exhibitor','apply')}`, { wake:true, lead: k('해군군수산업전 참가신청서 항목입니다. 표시(*)된 항목은 필수이며, 제출 후 사무국이 참가 여부를 확정해 통보합니다.','This is the Naval Logistics Expo application form. Fields marked * are required. The secretariat will confirm your participation after review.') });
+  ${spSec('05', k('문의','Contact'), `<h3 class="sp-h3" style="margin-bottom:18px">${k('해양군수산업전 사무국','Naval Logistics Expo Secretariat')}</h3>${spContact()}`)}
+  ${spPrevNext('exhibitor','apply')}`, { wake:true, lead: k('해양군수산업전 참가신청서 항목입니다. 표시(*)된 항목은 필수이며, 제출 후 사무국이 참가 여부를 확정해 통보합니다.','This is the Naval Logistics Expo application form. Fields marked * are required. The secretariat will confirm your participation after review.') });
 };
 
 /* ---- VISITOR ---- */
