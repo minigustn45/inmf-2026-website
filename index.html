@@ -41,6 +41,8 @@ a{color:var(--blue)}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
 .skip{position:absolute;left:-999px;top:0;background:var(--flag);color:var(--flag-ink);padding:8px 12px;z-index:100}
 .skip:focus{left:8px}
+#app:focus{outline:none}
+#app:focus-visible{outline:2px solid var(--w-cyan);outline-offset:-2px}
 
 /* ================= WAKE — header / hero / intro ================= */
 :root{
@@ -538,6 +540,9 @@ html[lang="ko"] .sp-label span{font:500 13px/1.1 var(--w-kr);letter-spacing:0}
 .sp .data th{padding:14px 20px 14px 0;background:none;border-bottom:1px solid var(--w-line-p);font:500 12.5px/1.4 var(--w-kr);color:var(--w-p2)}
 .sp .data td{padding:16px 20px 16px 0;border-bottom:1px solid var(--w-line-p);color:var(--w-p1)}
 .sp .data td:first-child{font-weight:500}
+/* country-table row control: looks like the cell text, reachable by Tab, Enter / Space via the native button */
+.sp .data .row-sel{display:inline;padding:0;margin:0;border:0;background:none;color:inherit;font:inherit;letter-spacing:inherit;text-align:left;cursor:pointer}
+.sp .data .row-sel:focus-visible{outline:2px solid var(--w-steel);outline-offset:4px}
 .sp .data ul{margin:0;padding:0;list-style:none}
 .sp .data .none{color:var(--w-p3)}
 .sp .data tr[data-c]{cursor:pointer}
@@ -1267,7 +1272,7 @@ function netScene(){
 /* ================= header / footer ================= */
 function renderHeader(cur){
   document.getElementById('gnb').innerHTML = `<div class="wrap">
-    <a class="brand" href="#/" aria-label="${k('2026 국제 해군 군수 및 MRO 협력 포럼 홈','2026 International Naval Logistics & MRO Forum home')}"><b class="brand-mark">INMF<span>2026</span></b></a>
+    <a class="brand" href="#/" aria-label="${k('2026 국제 해군 군수 및 MRO 협력 포럼 홈','2026 International Naval Logistics & MRO Cooperation Forum home')}"><b class="brand-mark">INMF<span>2026</span></b></a>
     <ul class="menu" id="menu">${NAV.map(n => `<li><button type="button" aria-current="${cur===n.id}" aria-haspopup="true">${n.label}</button>
       <ul class="drop">${n.subs.map(s => `<li><a href="#/${n.id}/${s[0]}">${esc(s[1][state.lang==='ko'?0:1])}</a></li>`).join('')}</ul></li>`).join('')}</ul>
     <div class="tools">
@@ -1593,7 +1598,7 @@ P['about/overview'] = () => pageShell('about','overview', `
 P['about/background'] = () => {
   const L = state.lang==='ko'?0:1;
   const lt = k('양도 현황','Transferred'), le = k('수출 현황','Exported');
-  const rows = C.filter(c=>c.st==='op').map(c => `<tr data-c="${c.code}" class="${state.country===c.code?'sel':''}"><td>${esc(c[state.lang])}</td>
+  const rows = C.filter(c=>c.st==='op').map(c => `<tr data-c="${c.code}" class="${state.country===c.code?'sel':''}"><td><button type="button" class="row-sel" aria-pressed="${state.country===c.code}" aria-label="${esc(c[state.lang])}: ${k('지도에 표시','show on map')}">${esc(c[state.lang])}</button></td>
     <td data-l="${lt}">${c.t.length?'<ul>'+c.t.map(v=>`<li>${esc(v[L])}</li>`).join('')+'</ul>':'<span class="none">-</span>'}</td>
     <td data-l="${le}">${c.e.length?'<ul>'+c.e.map(v=>`<li>${esc(v[L])}</li>`).join('')+'</ul>':'<span class="none">-</span>'}</td></tr>`).join('');
   return pageShell('about','background', `
@@ -2238,10 +2243,12 @@ function selectCountry(code){
   document.querySelectorAll('.pt').forEach(p => p.classList.toggle('on', p.dataset.c === state.country));
   document.querySelectorAll('.route').forEach(r => r.classList.toggle('on', r.dataset.c === state.country));
   document.querySelectorAll('.net-c').forEach(b => b.setAttribute('aria-pressed', b.dataset.c === state.country));
-  document.querySelectorAll('.data tr[data-c]').forEach(r => r.classList.toggle('sel', r.dataset.c === state.country));
+  document.querySelectorAll('.data tr[data-c]').forEach(r => { const on = r.dataset.c === state.country; r.classList.toggle('sel', on); const b = r.querySelector('.row-sel'); if (b) b.setAttribute('aria-pressed', on); });
   const ro = document.getElementById('readout'); if (ro) ro.innerHTML = readout(state.country);
 }
 document.addEventListener('click', e => {
+  // skip link: move focus to <main> instead of letting #app reach the hash router (which would route to Home)
+  if (e.target.closest('#skipLink')){ e.preventDefault(); const m = document.getElementById('app'); m.focus({ preventScroll: true }); m.scrollIntoView({ block: 'start' }); return; }
   const lang = e.target.closest('[data-lang]');
   if (lang){ state.lang = lang.dataset.lang; try{ localStorage.setItem('forum-lang', state.lang); }catch(err){} route(); return; }
   if (e.target.closest('.scroll-cue')){ const next = document.querySelector('.intro') || document.querySelector('.netsec'); if (next) next.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
