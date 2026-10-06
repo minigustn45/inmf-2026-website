@@ -370,20 +370,20 @@ html.scrolled[data-scene="paper"] .gnb:has(.menu.show){background:var(--w-ink);c
 .life{--lf:0;position:relative;background:var(--w-ink);color:var(--w-t1)}
 .life-track{position:relative;height:220vh}
 .life-stick{position:sticky;top:0;height:100vh;min-height:640px;overflow:hidden}
-.life-conv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:calc(1 - var(--lf) * 5)}
-.life-conv path{fill:none;stroke:var(--w-steel);stroke-opacity:.26;stroke-width:.8;vector-effect:non-scaling-stroke}
 .life-folio{position:absolute;top:calc(var(--w-gh) + clamp(40px,7vh,80px));left:var(--w-pad);margin:0;display:flex;gap:12px;font:500 11px/1 var(--w-ui);letter-spacing:.2em;text-transform:uppercase;color:var(--w-t2)}
 .life-folio b{font-weight:500;color:var(--w-cyan)}
 .life-count{position:absolute;top:calc(var(--w-gh) + clamp(40px,7vh,80px));right:var(--w-pad);margin:0;font:500 11px/1 var(--w-ui);letter-spacing:.2em;color:var(--w-t3)}
 .life-count b{font-weight:500;color:var(--w-t1)}
-.life-rail{position:absolute;left:var(--w-pad);right:var(--w-pad);top:55%;height:0}
-.ll-base,.ll-fill{position:absolute;left:0;top:0;height:1px}
+.life-rail{position:absolute;left:var(--w-pad);right:var(--w-pad);top:51%;height:0}
+.ll-base,.ll-fill,.ll-seg{position:absolute;left:0;top:0;height:1px}
 .ll-base{right:0;background:rgba(170,188,208,.2)}
 .ll-fill{width:calc(var(--lf) * 100%);background:rgba(236,238,240,.72)}
-.ll-head{position:absolute;top:0;left:calc(var(--lf) * 100%);width:7px;height:7px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--w-cyan);box-shadow:0 0 0 5px rgba(7,9,13,1),0 0 0 6px rgba(95,195,228,.5)}
+.ll-head{position:absolute;top:0;left:calc(var(--lf) * 100%);width:7px;height:7px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--w-cyan);box-shadow:0 0 0 5px rgba(7,9,13,1),0 0 0 6px rgba(95,195,228,.5),0 0 18px 6px rgba(95,195,228,.16)}
+/* the span of the current stage: a faint cyan underlay from its tick to the next one */
+.ll-seg{left:calc(var(--s0,0) * 100%);width:calc((var(--s1,.15) - var(--s0,0)) * 100%);top:-1px;height:3px;background:linear-gradient(90deg,rgba(95,195,228,.26),rgba(95,195,228,0));transition:left .7s var(--w-ease),width .7s var(--w-ease)}
 .life-steps{list-style:none;margin:0;padding:0}
 .ls{position:absolute;top:0;left:calc(var(--x) * 100%)}
-.ls::before{content:'';position:absolute;left:0;top:-5px;width:1px;height:10px;background:rgba(236,238,240,.2);transition:background-color .5s ease}
+.ls::before{content:'';position:absolute;left:0;top:-5px;width:1px;height:10px;background:rgba(236,238,240,.2);transition:background-color .5s ease,height .5s var(--w-ease),top .5s var(--w-ease)}
 .ls-en{position:absolute;left:0;bottom:22px;white-space:nowrap;font:400 clamp(26px,2.6vw,40px)/.95 var(--w-display);letter-spacing:-.015em;color:rgba(236,238,240,.26);transition:color .6s var(--w-ease)}
 .ls-ko{position:absolute;left:0;top:22px;white-space:nowrap;font:500 14px/1.5 var(--w-kr);color:rgba(236,238,240,.30);transition:color .6s var(--w-ease)}
 .ls-key .ls-en{font-size:clamp(88px,9.8vw,160px);font-weight:500;letter-spacing:-.045em;line-height:.78;bottom:18px}
@@ -394,12 +394,33 @@ html.scrolled[data-scene="paper"] .gnb:has(.menu.show){background:var(--w-ink);c
 .ls.is-past::before{background:rgba(236,238,240,.5)}
 .ls.is-now .ls-en{color:var(--w-t1)}
 .ls.is-now .ls-ko{color:var(--w-t1)}
-.ls.is-now::before{background:var(--w-t1)}
+.ls.is-now::before{background:var(--w-t1);top:-9px;height:18px}
+.ls-sub{display:block;margin-top:14px}
+.ls-sub i{display:block;font:400 12.5px/1.75 var(--w-kr);font-style:normal;color:rgba(236,238,240,.24);transition:color .6s var(--w-ease)}
+html[lang="en"] .ls-sub i{font:400 12px/1.8 var(--w-ui);letter-spacing:.01em}
+.ls.is-past .ls-sub i{color:rgba(236,238,240,.42)}
+.ls.is-now .ls-sub i{color:rgba(236,238,240,.78)}
+.ls-desc{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+/* stage reading: one line per stage, cross-faded in the lower left as the rail advances */
+.life-read{position:absolute;left:var(--w-pad);bottom:clamp(48px,9vh,96px);width:min(620px,48%);display:grid}
+.lr{grid-area:1 / 1;margin:0;opacity:0;transform:translateY(8px);transition:opacity .6s var(--w-ease),transform .6s var(--w-ease)}
+.lr-k{display:flex;gap:14px;margin-bottom:14px;font:500 11px/1 var(--w-ui);letter-spacing:.2em;text-transform:uppercase;color:var(--w-t2)}
+.lr-k b{font-weight:500;color:var(--w-cyan)}
+.lr-t{display:block;word-break:keep-all;text-wrap:pretty;font:400 clamp(17px,1.35vw,20px)/1.7 var(--w-kr);letter-spacing:-.01em;color:rgba(236,238,240,.86)}
+@media (prefers-reduced-motion:reduce) and (min-width:761px){
+  .life *{transition:none!important}
+  .life-track{height:auto}
+  .life-stick{position:relative;height:760px;min-height:0}
+  .life-rail{top:340px}
+  .life-read,.life-count,.ll-seg,.ll-head{display:none}
+  .ls::before,.ls.is-now::before{top:-5px;height:10px}
+  .ls-desc{position:static;display:block;width:calc(var(--w) * (100vw - 2 * var(--w-pad)) - 32px);height:auto;overflow:visible;clip-path:none;margin-top:16px;white-space:normal;word-break:keep-all;font:400 13.5px/1.7 var(--w-kr);color:var(--w-t2)}
+  html[lang="en"] .ls-desc{font:400 13px/1.65 var(--w-ui)}
+}
+.life[data-now="0"] .lr[data-i="0"],.life[data-now="1"] .lr[data-i="1"],.life[data-now="2"] .lr[data-i="2"],.life[data-now="3"] .lr[data-i="3"],.life[data-now="4"] .lr[data-i="4"]{opacity:1;transform:none}
 .ls-key.is-past .ls-en{color:rgba(236,238,240,.66)}
 .ls-key.is-now .ls-note,.ls-key.is-past .ls-note{opacity:1;transform:none}
 html[lang="ko"] .ls-note{font:500 12.5px/1.5 var(--w-kr);letter-spacing:0}
-.life-close{position:absolute;left:calc(var(--w-pad) + (100% - 2 * var(--w-pad)) / 6);bottom:clamp(48px,9vh,96px);max-width:640px;margin:0;font:500 clamp(18px,1.5vw,22px)/1.6 var(--w-kr);letter-spacing:-.015em;color:var(--w-t2);opacity:0;transform:translateY(10px);transition:opacity .8s var(--w-ease),transform .8s var(--w-ease)}
-.life[data-now="4"] .life-close{opacity:1;transform:none}
 /* ink -> paper: a long, eased band so Program never flashes in */
 .band-paper{position:absolute;left:0;right:0;bottom:0;height:34%}
 .life-band{position:relative;height:clamp(260px,46vh,440px);background:linear-gradient(180deg,#07090D 0%,#0E1115 18%,#26292D 38%,#6E7072 60%,#B9B8B4 80%,#E2E1DC 92%,#EEEDE8 100%)}
@@ -445,7 +466,7 @@ html[lang="ko"] .ls-note{font:500 12.5px/1.5 var(--w-kr);letter-spacing:0}
 @media (max-width:760px){
   .life-track{height:auto}
   .life-stick{position:relative;height:auto;min-height:0;padding:96px var(--w-pad) 72px}
-  .life-conv,.life-count{display:none}
+  .life-count,.life-read,.ll-seg{display:none}
   .life-folio{position:static;margin:0 0 44px}
   .life-rail{position:relative;left:auto;right:auto;top:auto;height:auto}
   .ll-base{left:0;top:10px;bottom:46px;right:auto;width:1px;height:auto}
@@ -457,11 +478,15 @@ html[lang="ko"] .ls-note{font:500 12.5px/1.5 var(--w-kr);letter-spacing:0}
   .ls-en{font-size:30px;color:var(--w-t1)}
   .ls-ko{margin-top:8px;font-size:14px;color:var(--w-t2)}
   .ls-key{padding:14px 0 50px 30px}
-  .ls-key::before{top:1.4em;background:var(--w-cyan)}
+  .ls.is-now::before{top:.55em;height:7px}
+  .ls-key::before,.ls-key.is-now::before{top:1.4em;background:var(--w-cyan)}
   .ls-key .ls-en{font-size:84px;line-height:.82;color:var(--w-t1)}
   .ls-key .ls-ko{margin-top:12px;font-size:16px;color:var(--w-t1)}
   .ls-key .ls-note{opacity:1;transform:none}
-  .life-close{position:static;margin:14px 0 0 30px;font-size:17px;opacity:1;transform:none;color:var(--w-t2)}
+  .ls-sub{display:flex;flex-wrap:wrap;margin-top:10px}
+  .ls-sub i,html[lang="en"] .ls-sub i{font:400 13px/1.6 var(--w-kr);color:rgba(236,238,240,.62)}
+  .ls-sub i+i::before{content:'·';margin:0 7px;color:var(--w-t3)}
+  .ls-desc{position:static;display:block;width:auto;height:auto;overflow:visible;clip-path:none;white-space:normal;max-width:34em;margin-top:12px;font:400 14.5px/1.7 var(--w-kr);word-break:keep-all;color:var(--w-t2)}
   .life-band{height:260px}
   .prog{padding-top:24px}
   .prog-title{font-size:28px}
@@ -1249,6 +1274,21 @@ const REGIONS = [
   [['유럽','Europe'], ['GBR','NOR','PRT']],
   [['미주','Americas'], ['COL','PER','VEN','URY','USA','ECU']]
 ];
+/* lifecycle stages: --x position on the rail, keywords (sub) and the one-line reading shown per stage */
+function lifeSteps(){
+  return [
+    { x:0, en:'BUILD', ko:['건조','Shipbuilding'], sub:[['설계','생산','체계 통합'],['Design','Production','Integration']],
+      d:['함정의 생애주기는 설계와 건조에서 시작되며, 이 단계의 설계·품질 기준이 이후의 운용과 정비로 이어집니다.','A ship’s life cycle begins with design and construction, and the standards set here carry through to operation and maintenance.'] },
+    { x:.15, en:'DELIVERY', ko:['인도','Delivery'], sub:[['인수','교육훈련','전력화 준비'],['Acceptance','Training','Fielding']],
+      d:['건조된 함정은 운용국 해군에 인도되며, 교육훈련과 전력화 준비를 거쳐 운용 단계로 넘어갑니다.','Completed ships are delivered to the operating navy and enter service after training and fielding.'] },
+    { x:.31, en:'OPERATION', ko:['운용','Operation'], sub:[['배치','유지','현장 지원'],['Deployment','Sustainment','Field support']],
+      d:['양도·수출된 K-함정은 각국 해군의 현장에서 운용되며, 안정적인 운용을 위해서는 지속적인 유지와 현장 지원이 필요합니다.','Korean-built ships transferred or exported to partner navies are operated in the field, and steady operation needs continuous sustainment and field support.'] },
+    { x:.5, en:'MRO', key:true, ko:['정비 · 수리 · 개량','Maintenance · Repair · Overhaul'], note:['이 포럼이 다루는 영역','Where this forum focuses'],
+      d:['운용 중인 함정의 성능과 가용성은 정비·수리·개량으로 유지됩니다. INMF 2026 포럼은 함정 MRO의 발전 과제와 국제 협력을 다룹니다.','Maintenance, repair and overhaul keep ships capable and available throughout their operation. The INMF 2026 forum addresses the development of naval MRO and international cooperation.'] },
+    { x:.8, en:'LIFE-CYCLE<br>SUPPORT', ko:['전 생애주기 지원','Life-cycle support'], sub:[['통합 군수지원','국가 간 협력'],['Integrated logistics support','Navy-to-navy cooperation']],
+      d:['국가 간 군수 협력이 K-해양방산의 새로운 경쟁력이며, 국제 해양안보의 초석이 됩니다.','Logistics cooperation between navies is the new edge of Korea’s naval industry and a foundation of maritime security.'] }
+  ];
+}
 function netScene(){
   const fig = (i, left, top, n, u, s) => `<div class="net-fig" style="left:${left}%;top:${top}%;--i:${i}"><dt>${n}</dt><dd><span class="u">${u}</span><span class="s">${s}</span></dd></div>`;
   return `<section class="net" aria-labelledby="netTitle">
@@ -1532,20 +1572,15 @@ P.home = () => {
 
   <section class="life" aria-labelledby="lifeTitle" data-now="0">
     <div class="life-track"><div class="life-stick">
-      <svg class="life-conv" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">${[260,420,560,690,820,940,1060,1180,1300].map((x,i) => `<path d="M${x},0 C${x},${240 + i*13} ${180 + i*10},495 48,495"/>`).join('')}</svg>
       <p class="life-folio"><b>04</b><span id="lifeTitle">Lifecycle</span></p>
       <p class="life-count" aria-hidden="true"><b>01</b> / 05</p>
       <div class="life-rail">
-        <i class="ll-base"></i><i class="ll-fill"></i><i class="ll-head"></i>
-        <ol class="life-steps">
-          <li class="ls" style="--x:0"><span class="ls-en">BUILD</span><span class="ls-ko">${k('건조','Shipbuilding')}</span></li>
-          <li class="ls" style="--x:.15"><span class="ls-en">DELIVERY</span><span class="ls-ko">${k('인도','Delivery')}</span></li>
-          <li class="ls" style="--x:.31"><span class="ls-en">OPERATION</span><span class="ls-ko">${k('운용','Operation')}</span></li>
-          <li class="ls ls-key" style="--x:.5"><span class="ls-en">MRO</span><span class="ls-ko">${k('정비 · 수리 · 개량','Maintenance · Repair · Overhaul')}<span class="ls-note">${k('이 포럼이 다루는 영역','Where this forum focuses')}</span></span></li>
-          <li class="ls" style="--x:.8"><span class="ls-en">LIFE-CYCLE<br>SUPPORT</span><span class="ls-ko">${k('전 생애주기 지원','Life-cycle support')}</span></li>
+        <i class="ll-base"></i><i class="ll-seg"></i><i class="ll-fill"></i><i class="ll-head"></i>
+        <ol class="life-steps">${lifeSteps().map((st, i, all) => `
+          <li class="ls${st.key ? ' ls-key' : ''}" style="--x:${st.x};--w:${+((i < all.length - 1 ? all[i + 1].x : 1) - st.x).toFixed(2)}"><span class="ls-en">${st.en}</span><span class="ls-ko">${k(st.ko[0], st.ko[1])}${st.note ? `<span class="ls-note">${k(st.note[0], st.note[1])}</span>` : ''}${st.sub ? `<span class="ls-sub">${(state.lang === 'ko' ? st.sub[0] : st.sub[1]).map(w => `<i>${w}</i>`).join('')}</span>` : ''}<span class="ls-desc">${k(st.d[0], st.d[1])}</span></span></li>`).join('')}
         </ol>
       </div>
-      <p class="life-close">${k('국가 간 군수 협력이 K-해양방산의 새로운 경쟁력이며, 국제 해양안보의 초석이 됩니다.','Logistics cooperation between navies is the new edge of Korea’s naval industry and a foundation of maritime security.')}</p>
+      <div class="life-read" aria-hidden="true">${lifeSteps().map((st, i) => `<p class="lr" data-i="${i}"><span class="lr-k"><b>${String(i + 1).padStart(2, '0')}</b>${st.en.replace('<br>', ' ')}</span><span class="lr-t">${k(st.d[0], st.d[1])}</span></p>`).join('')}</div>
     </div></div>
     <div class="life-band" aria-hidden="true"><i class="band-paper" data-scene="paper"></i></div>
   </section>
@@ -2217,6 +2252,8 @@ function updateLife(){
   life.style.setProperty('--lf', lf.toFixed(4));
   steps.forEach((s, i) => { s.classList.toggle('is-past', live && i < now); s.classList.toggle('is-now', !live || i === now); });
   life.dataset.now = now;
+  life.style.setProperty('--s0', parseFloat(steps[now].style.getPropertyValue('--x')));
+  life.style.setProperty('--s1', now < steps.length - 1 ? parseFloat(steps[now + 1].style.getPropertyValue('--x')) : 1);
   const cnt = life.querySelector('.life-count b'); if (cnt) cnt.textContent = String(now + 1).padStart(2, '0');
 }
 window.addEventListener('resize', () => updateGnbScrolled());
